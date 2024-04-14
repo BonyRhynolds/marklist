@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+            <tr><td><label for="name">Name:</label></td>
+            <td><input  type="text" name="Name"></td></tr>
+            <tr><td><label for="mark1">Mark1:</label></td>
+            <td><input type="number" name="Mark1"></td></tr>
+            <tr><td><label for="mark2">Mark2:</label></td>
+            <td><input type="number" name="mark2"></td></tr>
+            <tr><td><input type="submit"></td></tr>
+            </table>
+        
+    </body>
+</html>
