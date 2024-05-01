@@ -14,20 +14,25 @@
          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     </head>
-    <body>
-     <h1> THIS IS HOME PAGE.</h1>
-     <br>
-     <a href={% url 'forms' %}>ADD MARKS</a><br><br><br>
-     
+    <body style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <h1> THIS IS MARKLIST.</h1>
+        <a href={% url 'forms' %}>ADD MARKS</a>
+      </nav>
         
-        
-        <table class="table">
+        <table class="table table-success table-striped">
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">NAME</th>
+                <th scope="col">REGNO</th>
                 <th scope="col">MARK1</th>
                 <th scope="col">MARK2</th>
+                <th scope="col">MARK3</th>
+                <th scope="col">TOTAL</th>
+                <th scope="col">RESULT</th>
+                <th scope="col">GRADE</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             {% for i in marks %}
@@ -35,8 +40,34 @@
               <tr>
                 <th scope="row">{{i.id}}</th>
                 <td>{{i.Name}}</td>
+                <td>{{i.RegNo}}</td>
                 <td>{{i.Mark1}}</td>
-                <td>{{i.mark2}}</td>
+                <td>{{i.Mark2}}</td>
+                <td>{{i.Mark3}}</td>
+                <td>{{i.total}}</td>
+
+                {% if i.total < 120 or i.Mark1 < 35 or i.Mark2 < 35 or i.Mark3 < 35 %}
+
+                <td>failed</td>
+                {% else %}
+                <td>passed</td>
+                {% endif %}
+                {% if i.total > 240 and i.Mark1 > 35 and i.Mark2 > 35 and i.Mark3 > 35 %}
+    
+                <td>A+</td>
+                {% elif i.total > 180 and i.Mark1 > 35 and i.Mark2 > 35 and i.Mark3 > 35  %}
+    
+                <td>A</td>
+                {% elif i.total > 150 and i.Mark1 > 35 and i.Mark2 > 35 and i.Mark3 > 35 %}
+                <td>B</td>
+    
+                {% elif i.total < 150  and i.Mark1 > 35 and i.Mark2 > 35 and i.Mark3 > 35  %}
+                <td>C</td>
+                {% else %}
+                <td>F</td>
+    
+                {% endif %}
+
                 <td><a href="{% url 'update' i.id%}">update</a><br>
   <a href="{% url 'delete' i.id %}">delete</a><br>
   <a href="{% url 'detail' i.id %}">detail</a></td>
